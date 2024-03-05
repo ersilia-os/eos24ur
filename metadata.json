@@ -1,9 +1,9 @@
 {
-    "Identifier": "",
-    "Slug": "",
-    "Status": "",
-    "Title": "",
-    "Description": "",
+    "Identifier": "eos24ur",
+    "Slug": "whales-scaled",
+    "Status": "In progress",
+    "Title": "WHALES scaled",
+    "Description": "Scaled version of WHALES descriptors. WHALES are holistic molecular descriptors useful for scaffold hopping.",
     "Mode": "",
     "Task": [],
     "Input": [],
@@ -12,8 +12,8 @@
     "Output Type": [],
     "Output Shape": "",
     "Interpretation": "",
-    "Tag": [],
-    "Publication": "",
-    "Source Code": "",
-    "License": ""
+    "Tag": "Descriptor",
+    "Publication": "https://www.nature.com/articles/s42004-018-0043-x",
+    "Source Code": "https://github.com/grisoniFr/scaffold_hopping_whales",
+    "License": "MIT"
 }
