@@ -1,18 +1,29 @@
 {
     "Identifier": "eos24ur",
     "Slug": "whales-scaled",
-    "Status": "In progress",
+    "Status": "Ready",
     "Title": "WHALES scaled",
-    "Description": "Scaled version of WHALES descriptors. WHALES are holistic molecular descriptors useful for scaffold hopping.",
-    "Mode": "",
-    "Task": [],
-    "Input": [],
-    "Input Shape": "",
-    "Output": [],
-    "Output Type": [],
-    "Output Shape": "",
-    "Interpretation": "",
-    "Tag": "Descriptor",
+    "Description": "Scaled version of the WHALES descriptors (see eos3ae6). WHALES are holistic molecular descriptors useful for scaffold hopping, based on 3D structure to facilitate natural product featurization. The scaling uses sklearn's Robust Scaler trained on a random set of 100K molecules from ChEMBL.",
+    "Mode": "Pretrained",
+    "Input": [
+        "Compound"
+    ],
+    "Input Shape": "Single",
+    "Task": [
+        "Representation"
+    ],
+    "Output": [
+        "Descriptor"
+    ],
+    "Output Type": [
+        "Float"
+    ],
+    "Output Shape": "List",
+    "Interpretation": "Scaled vector representation of a molecule",
+    "Tag": [
+        "Natural product",
+        "Descriptor"
+    ],
     "Publication": "https://www.nature.com/articles/s42004-018-0043-x",
     "Source Code": "https://github.com/grisoniFr/scaffold_hopping_whales",
     "License": "MIT"

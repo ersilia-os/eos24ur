@@ -1,39 +1,53 @@
-# imports
-import os
+from whales.ChemTools import prepare_mol_from_sdf
+from whales import do_whales
+import whales.ChemTools as tools
+
 import csv
-import sys
-from rdkit import Chem
-from rdkit.Chem.Descriptors import MolWt
+import os, sys
+import pandas as pd
+from rdkit.Chem import PandasTools
+import numpy as np
+import tempfile
+import joblib
 
-# parse arguments
-input_file = sys.argv[1]
-output_file = sys.argv[2]
+ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# current file directory
-root = os.path.dirname(os.path.abspath(__file__))
+SDF_FILE = "act.sdf"
 
-# my model
-def my_model(smiles_list):
-    return [MolWt(Chem.MolFromSmiles(smi)) for smi in smiles_list]
+data_file = os.path.abspath(sys.argv[1])
+output_file = os.path.abspath(sys.argv[2])
+
+df = pd.read_csv(data_file)
+
+tmp_folder = tempfile.mkdtemp()
+sdf_file = os.path.join(tmp_folder, SDF_FILE)
+
+PandasTools.AddMoleculeColumnToFrame(df,'smiles','molecule')
+PandasTools.WriteSDF(df, sdf_file, molColName='molecule', properties=list(df.columns))
+
+mols = prepare_mol_from_sdf(sdf_file) # computes 3D geometry from a specified sdf file
 
 
-# read SMILES from .csv file, assuming one column with header
-with open(input_file, "r") as f:
-    reader = csv.reader(f)
-    next(reader)  # skip header
-    smiles_list = [r[0] for r in reader]
+with open(os.path.join(ROOT, "labels.csv"), "r") as f:
+    lab = []
+    for l in f:
+        lab += [l.rstrip()]
 
-# run model
-outputs = my_model(smiles_list)
+scaler = joblib.load(os.path.join(ROOT, "..", "..", "checkpoints", 'scaler.pkl'))
+whales_library = []
+for mol in mols:
+    try:
+        whales_temp, _ = do_whales.whales_from_mol(mol)
+        whales_temp = scaler.transform(whales_temp) #Scale Descriptors
+    except:
+        whales_temp = None
+    whales_library.append(whales_temp)
 
-#check input and output have the same lenght
-input_len = len(smiles_list)
-output_len = len(outputs)
-assert input_len == output_len
 
-# write output in a .csv file
 with open(output_file, "w") as f:
     writer = csv.writer(f)
-    writer.writerow(["value"])  # header
-    for o in outputs:
-        writer.writerow([o])
+    writer.writerow(lab)
+    for r in whales_library:
+        if r is None:
+            r = [""]*len(lab)
+        writer.writerow(r)
