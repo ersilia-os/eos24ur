@@ -25,6 +25,8 @@ Scaled version of the WHALES descriptors (see eos3ae6). WHALES are holistic mole
 
 ## Ersilia model URLs
 * [GitHub](https://github.com/ersilia-os/eos24ur)
+* [AWS S3](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos24ur.zip)
+* [DockerHub](https://hub.docker.com/r/ersiliaos/eos24ur) (AMD64, ARM64)
 
 ## Citation
 

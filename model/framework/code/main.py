@@ -22,7 +22,7 @@ df = pd.read_csv(data_file)
 tmp_folder = tempfile.mkdtemp()
 sdf_file = os.path.join(tmp_folder, SDF_FILE)
 
-PandasTools.AddMoleculeColumnToFrame(df,'smiles','molecule')
+PandasTools.AddMoleculeColumnToFrame(df,'input','molecule')
 PandasTools.WriteSDF(df, sdf_file, molColName='molecule', properties=list(df.columns))
 
 mols = prepare_mol_from_sdf(sdf_file) # computes 3D geometry from a specified sdf file

@@ -26,5 +26,11 @@
     ],
     "Publication": "https://www.nature.com/articles/s42004-018-0043-x",
     "Source Code": "https://github.com/grisoniFr/scaffold_hopping_whales",
-    "License": "MIT"
+    "License": "MIT",
+    "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos24ur.zip",
+    "DockerHub": "https://hub.docker.com/r/ersiliaos/eos24ur",
+    "Docker Architecture": [
+        "AMD64",
+        "ARM64"
+    ]
 }
