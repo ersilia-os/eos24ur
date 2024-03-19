@@ -38,7 +38,7 @@ whales_library = []
 for mol in mols:
     try:
         whales_temp, _ = do_whales.whales_from_mol(mol)
-        whales_temp = scaler.transform(whales_temp) #Scale Descriptors
+        whales_temp = scaler.transform([whales_temp])[0]
     except:
         whales_temp = None
     whales_library.append(whales_temp)

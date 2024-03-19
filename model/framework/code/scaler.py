@@ -11,6 +11,7 @@ datafile = os.path.abspath(sys.argv[1])  # a file containing WHALES descriptors 
 data = pd.read_csv(datafile)
 X = data.drop(columns=['key', "input"])
 X = X.values
+print(X.shape)
 
 scaler = RobustScaler()
 scaler.fit(X)
