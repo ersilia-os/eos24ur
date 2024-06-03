@@ -5,15 +5,17 @@ import pandas as pd
 from sklearn.preprocessing import RobustScaler
 import joblib
 
-
-datafile = os.path.abspath(sys.argv[1])  # a file containing WHALES descriptors (eos3ae6) of 100K molecules randomly sampled from ChEMBL
+ROOT = os.path.dirname(os.path.abspath(__file__))
+datafile = os.path.join(ROOT, "..", "..", "checkpoints", "chembl34_whales.csv")
 
 data = pd.read_csv(datafile)
-X = data.drop(columns=['key', "input"])
+X = data.drop(columns=['smiles'])
 X = X.values
 print(X.shape)
 
 scaler = RobustScaler()
 scaler.fit(X)
 
-joblib.dump(scaler, '../../checkpoints/scaler.pkl')
+print("scaling done")
+print(os.path.join(ROOT, "..", "..", "checkpoints",'scaler_chembl34.pkl'))
+joblib.dump(scaler, os.path.join(ROOT, "..", "..", "checkpoints",'scaler_chembl34.pkl'))

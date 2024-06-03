@@ -33,7 +33,7 @@ with open(os.path.join(ROOT, "labels.csv"), "r") as f:
     for l in f:
         lab += [l.rstrip()]
 
-scaler = joblib.load(os.path.join(ROOT, "..", "..", "checkpoints", 'scaler.pkl'))
+scaler = joblib.load(os.path.join(ROOT, "..", "..", "checkpoints", 'scaler_chembl34.pkl'))
 whales_library = []
 for mol in mols:
     try:
