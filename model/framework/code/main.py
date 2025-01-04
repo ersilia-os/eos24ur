@@ -27,11 +27,12 @@ PandasTools.WriteSDF(df, sdf_file, molColName='molecule', properties=list(df.col
 
 mols = prepare_mol_from_sdf(sdf_file) # computes 3D geometry from a specified sdf file
 
-
-with open(os.path.join(ROOT, "labels.csv"), "r") as f:
+with open(os.path.join(ROOT, "..", "columns", "run_columns.csv"), "r") as f:
+    reader = csv.reader(f)
+    next(reader)
     lab = []
-    for l in f:
-        lab += [l.rstrip()]
+    for r in reader:
+        lab += [r[0]]
 
 scaler = joblib.load(os.path.join(ROOT, "..", "..", "checkpoints", 'scaler_chembl34.pkl'))
 whales_library = []
