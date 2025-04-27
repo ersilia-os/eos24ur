@@ -3,34 +3,45 @@
     "Slug": "whales-scaled",
     "Status": "Ready",
     "Title": "WHALES scaled",
-    "Description": "Scaled version of the WHALES descriptors (see eos3ae6). WHALES are holistic molecular descriptors useful for scaffold hopping, based on 3D structure to facilitate natural product featurization. The scaling uses sklearn's Robust Scaler trained on a random set of 100K molecules from ChEMBL.",
-    "Mode": "Pretrained",
+    "Description": "Scaled version of the WHALES descriptors (see eos3ae6). WHALES are holistic molecular descriptors useful for scaffold hopping, based on 3D structure to facilitate natural product featurization. The scaling uses sklearn's Robust Scaler trained on a random set of 100K molecules from ChEMBL.\n",
+    "Source": "Local",
+    "Source Type": "Replicated",
     "Input": [
         "Compound"
     ],
-    "Input Shape": "Single",
-    "Task": [
-        "Representation"
+    "Input Dimension": 1,
+    "Task": "Representation",
+    "Subtask": "Featurization",
+    "Biomedical Area": [
+        "Any"
+    ],
+    "Target Organism": [
+        "Not Applicable"
     ],
     "Output": [
-        "Descriptor"
+        "Value"
     ],
-    "Output Type": [
-        "Float"
-    ],
-    "Output Shape": "List",
+    "Output Dimension": 33,
+    "Output Consistency": "Fixed",
     "Interpretation": "Scaled vector representation of a molecule",
     "Tag": [
         "Natural product",
         "Descriptor"
     ],
     "Publication": "https://www.nature.com/articles/s42004-018-0043-x",
+    "Publication Type": "Peer reviewed",
+    "Publication Year": 2018,
     "Source Code": "https://github.com/grisoniFr/scaffold_hopping_whales",
     "License": "MIT",
-    "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos24ur.zip",
+    "Contributor": "miquelduranfrigola",
+    "Incorporation Date": "2024-03-05",
     "DockerHub": "https://hub.docker.com/r/ersiliaos/eos24ur",
     "Docker Architecture": [
         "AMD64",
         "ARM64"
+    ],
+    "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos24ur.zip",
+    "Deployment": [
+        "Local"
     ]
 }
