@@ -23,7 +23,6 @@ def prepare_mol_from_sdf(filename_in, do_geometry=True, do_charge=False, propert
             print('Molecule: ' + str(cnt))
 
         mol, err = prepare_mol(mol, do_geometry, do_charge, property_name, max_iter, mmffvariant, seed, max_attempts)
-
         if err == 1:
             print ('Molecule ' + str(cnt) + ' of ' + str(nmol) + ' not computed.')
         vs_library_prepared.append(mol)

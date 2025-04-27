@@ -47,7 +47,7 @@ def whales_from_mol(mol, charge_threshold=0, do_charge=True, property_name=''):
             x = np.full((33,), -999.0)
             errors += 1
             print('No computed charges.')
-
+    print(x, lab)
     return x, lab
 
 
@@ -85,10 +85,9 @@ def do_lcd(coords, w, thr):
 
     # calculates lcm with weight scheme 1 (all charges)
     res = lcm.lmahal(coords, w)
-
     # applies sign
+    print(w)
     res = apply_sign(w, res, thr)
-
     x_all, lab_all = extract_lcm(res)  # MDs and labels
 
     return x_all, lab_all
@@ -137,6 +136,7 @@ def extract_lcm(data, start=0, end=100, step=10, lab_string=''):
     x = np.percentile(data, list(perc), axis=0)
     x = np.concatenate((x[:, 0], x[:, 1], x[:, 2]), axis=0)  # Flattens preserving the ordering
 
+    
     # rounds the descriptors to the third decimal place
     x = np.round(x, 3)
 
@@ -146,5 +146,5 @@ def extract_lcm(data, start=0, end=100, step=10, lab_string=''):
     for j in strings:
         for i in perc:
             labels.append(j + lab_string + str(int(i / 10)))
-
+    print(x, labels)
     return x, labels
